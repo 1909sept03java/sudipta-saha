@@ -32,6 +32,7 @@ class FindingMinimumMutations{
 					count++;
 				}
 			}
+			//System.out.println(mutations);
 			//System.out.println(count);
 			//System.out.println(mutations);
 
@@ -44,7 +45,7 @@ class FindingMinimumMutations{
 			//System.out.println(checker);
 			if(checker==count) {
 				return count;
-			}
+			}else return -1;
 
 		}
 		return 0;

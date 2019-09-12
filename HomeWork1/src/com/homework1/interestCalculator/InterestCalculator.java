@@ -12,9 +12,13 @@ public class InterestCalculator {
 		time = scanner.nextDouble();
 		System.out.println("Enter the interest rate: ");
 		rate = scanner.nextDouble();
-		interest = principle*time*rate;
+		interest = interestCal(principle, time, rate);
 		System.out.println("Total interest: "+interest);
 		
+	}
+	
+	static double interestCal(double principle,double time,double rate) {
+		return principle*time*rate;
 	}
 	
 }

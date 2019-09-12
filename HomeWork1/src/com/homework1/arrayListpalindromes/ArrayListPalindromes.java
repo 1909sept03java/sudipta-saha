@@ -22,13 +22,16 @@ public class ArrayListPalindromes {
 			System.out.println(s);
 		}
 		System.out.println("Palindromes in the list: ");
-		palindrome(arraylist);
-		
-		
+		arraylist = palindrome(arraylist);
+		for(String s : arraylist) {
+			System.out.println(s);
+		}
+
+
 	}
-	static void palindrome(ArrayList<String> arraylist) {
+	static ArrayList<String> palindrome(ArrayList<String> arraylist) {
 		ArrayList<String> palindromes = new ArrayList<String>();
-//Checking if the string is a palindrome 
+		//Checking if the string is a palindrome 
 		for(int i=0; i<arraylist.size(); i++) {
 			String str = arraylist.get(i);
 			int length = str.length()-1;
@@ -44,8 +47,7 @@ public class ArrayListPalindromes {
 				palindromes.add(str);
 			}
 		}
-		for(String s : palindromes) {
-			System.out.println(s);
-		}
+		return palindromes;
+
 	}
 }

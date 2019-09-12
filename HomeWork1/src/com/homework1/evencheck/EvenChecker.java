@@ -4,19 +4,22 @@ import java.util.Scanner;
 
 public class EvenChecker {
 	public static void main(String[] args) {
-		int n,i;
+		int i;
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the number to check even: ");
 		i = scanner.nextInt();
-		n=i;
-		
+		if(evenCheck(i))
+			System.out.println(i+" is even");
+		else System.out.println(i+" is odd");
+	}
+
+	static boolean evenCheck(int i) {
+		int n=i;
 		for(; ; ) {
 			if((n-2 == 0) || (n-2 == -2) ) {
-				System.out.println(i+" is even");
-				break;
+				return true;
 			}else if(n-2 == -1) {
-				System.out.println(i+" is odd");
-				break;
+				return false;
 			}
 			n -= 2; 
 		}
