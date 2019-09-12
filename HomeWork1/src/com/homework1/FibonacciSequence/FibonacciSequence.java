@@ -1,3 +1,5 @@
+/*Write a program to display the first 25 Fibonacci numbers beginning at 0.
+*/
 package com.homework1.FibonacciSequence;
 
 public class FibonacciSequence {

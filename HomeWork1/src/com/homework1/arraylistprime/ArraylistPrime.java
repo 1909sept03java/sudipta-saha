@@ -1,3 +1,6 @@
+/*Create an ArrayList which stores numbers from 1 to 100 and prints out all the prime
+numbers to the console.*/
+
 package com.homework1.arraylistprime;
 
 import java.util.ArrayList;

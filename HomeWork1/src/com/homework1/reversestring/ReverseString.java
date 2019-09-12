@@ -1,3 +1,6 @@
+/*Reverse a string without using a temporary variable. Do NOT use reverse() in the
+StringBuffer or the StringBuilder APIs.*/
+
 package com.homework1.reversestring;
 
 import java.util.Scanner;

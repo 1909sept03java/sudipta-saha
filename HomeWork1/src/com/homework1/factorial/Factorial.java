@@ -1,3 +1,6 @@
+/*Write a program to compute N factorial.
+*/
+
 package com.homework1.factorial;
 
 import java.util.Scanner;

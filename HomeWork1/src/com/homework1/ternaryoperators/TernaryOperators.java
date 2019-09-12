@@ -1,3 +1,5 @@
+/*Find the minimum of two numbers using ternary operators.
+*/
 package com.homework1.ternaryoperators;
 
 public class TernaryOperators {
