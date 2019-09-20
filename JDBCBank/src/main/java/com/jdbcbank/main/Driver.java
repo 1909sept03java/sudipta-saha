@@ -210,15 +210,17 @@ public class Driver {
 											String firstName;
 											String lastName;
 											Scanner sc = new Scanner(System.in);
+											Scanner sc3 = new Scanner(System.in);
+											Scanner sc4 = new Scanner(System.in);
 											System.out.println("Enter the account no:");
 											int f = sc.nextInt();
-											sc.reset();
+											
 											System.out.println("Enter the firstname: ");
-											firstName = sc.nextLine();
-											sc.reset();
+											firstName = sc3.nextLine();
+											
 											System.out.println("Enter the lastname: ");
-											lastName = sc.nextLine();
-											sc.reset();
+											lastName = sc4.nextLine();
+											
 											if(f>0 && f<=i) {
 												bankUserDAO.updateUserAccount(arr[f-1],firstName,lastName);
 												System.out.println("Successful!!");
