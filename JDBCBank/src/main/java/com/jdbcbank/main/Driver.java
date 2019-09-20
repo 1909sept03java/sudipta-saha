@@ -159,7 +159,7 @@ public class Driver {
 											bankAccountDAO.deleteBankAccount(arr[f-1]);
 											System.out.println("Successful!!");
 											d=99;
-										}else System.out.println("Invalid amount");
+										}else System.out.println("Invalid input");
 									}catch (Exception e2) {
 										System.out.println("Invalid input");
 									}
@@ -225,7 +225,7 @@ public class Driver {
 												bankUserDAO.updateUserAccount(arr[f-1],firstName,lastName);
 												System.out.println("Successful!!");
 												e=99;
-											}else System.out.println("Invalid amount");
+											}else System.out.println("Invalid input");
 										}catch (Exception e2) {
 											System.out.println("Invalid input");
 										}
@@ -241,7 +241,7 @@ public class Driver {
 													bankUserDAO.deleteUserAccount(arr[f-1]);
 													System.out.println("Successful!!");
 													e=99;
-												}else System.out.println("Invalid amount");
+												}else System.out.println("Invalid input");
 											}else System.out.println("Can't delete a superuser");
 
 										}catch (Exception e2) {
