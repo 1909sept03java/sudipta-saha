@@ -34,6 +34,7 @@ public class Driver {
 			System.out.println("2.Create an account");
 			System.out.println("0.Exit");
 			num = scanner.nextLine();
+			scanner.reset();
 			try {
 				choice = Integer.parseInt(num);
 			}
@@ -41,25 +42,28 @@ public class Driver {
 				System.out.println("You have entered an invalid value.");
 				System.out.println("Please Start Over!");
 				System.out.println("------------------");
+				choice = 99;
 			}
 			switch (choice) {
 			case 1:
 				System.out.print("Please enter your username: ");
-				String userName = scanner.nextLine();
+				String userName = scanner.nextLine().toLowerCase();
+				scanner.reset();
 				System.out.print("Please enter your Password: ");
+				scanner.reset();
 				String userPassword = scanner.nextLine();
 
 				int bankUser=0;
 				if(userName.equals(superusername) && userPassword.equals(superpassword)) {
-					System.out.println("here");
+					//System.out.println("here");
 					isAdmin=1;
 					bankUser = 1000;
 				}else {
 					bankUser = bankUserDAO.login(userName, userPassword);
-					isAdmin=1;
+					isAdmin=0;
 				}
 				if(bankUser > 0) {
-					System.out.println(bankUser);
+					//System.out.println(bankUser);
 					int c=99;	
 					do {
 						System.out.println("Please select an option");
@@ -69,6 +73,7 @@ public class Driver {
 							System.out.println("3.Access all user information");
 						System.out.println("0.Exit");
 						String num1 = scanner.nextLine();
+						scanner.reset();
 						try {
 							c = Integer.parseInt(num1);
 						}
@@ -80,7 +85,7 @@ public class Driver {
 						switch (c) {
 						case 1:
 							int d = 99;
-							do {
+							while (d!=0){
 								int i =bankAccountDAO.getAccounts(bankUser).size();
 								int[] arr = new int[i];
 								int j=0;
@@ -95,6 +100,7 @@ public class Driver {
 								System.out.println("3.Delete account");
 								System.out.println("0.Exit");
 								String num2 = scanner.nextLine();
+								scanner.reset();
 								try {
 									d = Integer.parseInt(num2);
 								}
@@ -106,8 +112,11 @@ public class Driver {
 									try {
 										System.out.print("Enter the account no:");
 										int e = scanner.nextInt();
+										scanner.reset();
 										System.out.print("Enter the deposit amount:");
 										double deposit = scanner.nextDouble();
+										scanner.reset();
+										//System.out.println(e+" "+deposit+arr[e-1]);
 
 										if(deposit>0 && e>0 && e<=i) {
 											bankAccountDAO.deposit(arr[e-1], deposit);
@@ -125,8 +134,10 @@ public class Driver {
 									try {
 										System.out.print("Enter the account no:");
 										int f = scanner.nextInt();
+										scanner.reset();
 										System.out.print("Enter the withdrawl amount:");
 										double withdraw = scanner.nextDouble();
+										scanner.reset();
 										double balance = bankAccountDAO.balance(arr[f-1]);
 										if(withdraw>0 && f>0 && f<=i && withdraw<=balance) {
 											bankAccountDAO.withDraw(arr[f-1], withdraw);
@@ -142,6 +153,7 @@ public class Driver {
 									try {
 										System.out.print("Enter the account no:");
 										int f = scanner.nextInt();
+										scanner.reset();
 										double balance = bankAccountDAO.balance(arr[f-1]);
 										if(f>0 && f<=i && balance == 0.0) {
 											bankAccountDAO.deleteBankAccount(arr[f-1]);
@@ -158,7 +170,7 @@ public class Driver {
 									break;
 								}
 
-							} while (d!=0);
+							} 
 							break;
 
 
@@ -183,7 +195,9 @@ public class Driver {
 									System.out.println("1.Update user details");
 									System.out.println("2.Delete account");
 									System.out.println("0.Exit");
-									String num2 = scanner.nextLine();
+									Scanner sc2 = new Scanner(System.in);
+									String num2 = sc2.nextLine();
+									sc2.reset();
 									try {
 										e = Integer.parseInt(num2);
 									}
@@ -197,11 +211,14 @@ public class Driver {
 											String lastName;
 											Scanner sc = new Scanner(System.in);
 											System.out.println("Enter the account no:");
-											int f = scanner.nextInt();
+											int f = sc.nextInt();
+											sc.reset();
 											System.out.println("Enter the firstname: ");
 											firstName = sc.nextLine();
+											sc.reset();
 											System.out.println("Enter the lastname: ");
 											lastName = sc.nextLine();
+											sc.reset();
 											if(f>0 && f<=i) {
 												bankUserDAO.updateUserAccount(arr[f-1],firstName,lastName);
 												System.out.println("Successful!!");
@@ -216,6 +233,7 @@ public class Driver {
 										try {
 											System.out.print("Enter the account no:");
 											int f = scanner.nextInt();
+											scanner.reset();
 											if(arr[f-1] != 1000) {
 												if(f>0 && f<=i) {
 													bankUserDAO.deleteUserAccount(arr[f-1]);
@@ -255,6 +273,7 @@ public class Driver {
 				if(bankUserDAO.createBankUser()) {
 					System.out.println("Successful!!");
 				}
+				choice = 99;
 
 				break;
 			case 0:
