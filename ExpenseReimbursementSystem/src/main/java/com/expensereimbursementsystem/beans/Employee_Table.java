@@ -8,6 +8,27 @@ public class Employee_Table {
 	private String lastName;
 	private int isAdmin;
 	private int manager_id;
+	private String m_f;
+	private String m_l;
+	private Reimbursement_Table rtable;
+	public String getM_f() {
+		return m_f;
+	}
+	public void setM_f(String m_f) {
+		this.m_f = m_f;
+	}
+	public String getM_l() {
+		return m_l;
+	}
+	public void setM_l(String m_l) {
+		this.m_l = m_l;
+	}
+	public Reimbursement_Table getRtable() {
+		return rtable;
+	}
+	public void setRtable(Reimbursement_Table rtable) {
+		this.rtable = rtable;
+	}
 	public Employee_Table(int employee_id, String firstName, String lastName, int isAdmin, int manager_id) {
 		super();
 		this.employee_id = employee_id;
@@ -77,7 +98,19 @@ public class Employee_Table {
 	public String toString() {
 		return "Employee_Table [employee_id=" + employee_id + ", username=" + username + ", password=" + password
 				+ ", firstName=" + firstName + ", lastName=" + lastName + ", isAdmin=" + isAdmin + ", manager_id="
-				+ manager_id + "]";
-	} 
+				+ manager_id + ", m_f=" + m_f + ", m_l=" + m_l + ", rtable=" + rtable + "]";
+	}
+	public Employee_Table(int employee_id, String firstName, String lastName, int isAdmin, int manager_id, String m_f,
+			String m_l, Reimbursement_Table rtable) {
+		super();
+		this.employee_id = employee_id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.isAdmin = isAdmin;
+		this.manager_id = manager_id;
+		this.m_f = m_f;
+		this.m_l = m_l;
+		this.rtable = rtable;
+	}
 
 }

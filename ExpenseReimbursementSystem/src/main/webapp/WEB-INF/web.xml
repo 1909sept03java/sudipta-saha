@@ -37,4 +37,24 @@
     <servlet-name>NewTicketServlet</servlet-name>
     <url-pattern>/NewTicketServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeUnderManagerServlet</display-name>
+    <servlet-name>EmployeeUnderManagerServlet</servlet-name>
+    <servlet-class>com.expensereimbursementsystem.servlet.EmployeeUnderManagerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeUnderManagerServlet</servlet-name>
+    <url-pattern>/EmployeeUnderManagerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllCaseList</display-name>
+    <servlet-name>AllCaseList</servlet-name>
+    <servlet-class>com.expensereimbursementsystem.servlet.AllCaseList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllCaseList</servlet-name>
+    <url-pattern>/AllCaseList</url-pattern>
+  </servlet-mapping>
 </web-app>

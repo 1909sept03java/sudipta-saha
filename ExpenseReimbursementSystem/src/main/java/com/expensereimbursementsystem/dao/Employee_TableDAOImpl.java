@@ -5,8 +5,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.expensereimbursementsystem.beans.Employee_Table;
+import com.expensereimbursementsystem.beans.Reimbursement_Table;
 import com.expensereimbursementsystem.service.ConnectionService;
 public class Employee_TableDAOImpl implements Employee_TableDAO  {
 
@@ -36,6 +40,90 @@ public class Employee_TableDAOImpl implements Employee_TableDAO  {
 		}
 
 		return null;
+	}
+
+	@Override
+	public List<Employee_Table> employeeUnderManager(int employee_id) {
+		List<Employee_Table> tables = new ArrayList<Employee_Table>();
+		try (Connection con = ConnectionService.getConnection()) {
+			
+			String sql = "SELECT * FROM (SELECT * FROM (SELECT E.EMPLOYEE_ID ,E.FIRSTNAME, E.LASTNAME, E.ISADMIN, E.MANAGER_ID, M.FIRSTNAME AS M_F, M.LASTNAME AS M_L\r\n" + 
+					"FROM EMPLOYEE_TABLE E, EMPLOYEE_TABLE M\r\n" + 
+					"WHERE E.MANAGER_ID = M.EMPLOYEE_ID) E\r\n" + 
+					"JOIN REIMBURSEMENT_TABLE R\r\n" + 
+					"ON E.EMPLOYEE_ID = R.EMPLOYEE_ID)\r\n" + 
+					"WHERE MANAGER_ID = ? ORDER\r\n" + 
+					"BY REIMBURSEMENT_ID DESC";			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, employee_id);
+			pstmt.executeQuery();
+			ResultSet rs=pstmt.getResultSet();
+			while(rs.next()) {
+				Employee_Table table = new Employee_Table();
+				table.setEmployee_id(rs.getInt("EMPLOYEE_ID")); 
+				table.setFirstName(rs.getString("FIRSTNAME"));
+				table.setLastName(rs.getString("LASTNAME"));
+				table.setIsAdmin(rs.getInt("ISADMIN"));
+				table.setManager_id(rs.getInt("MANAGER_ID"));
+				table.setM_f(rs.getString("M_F"));
+				table.setM_l(rs.getString("M_L"));
+				int reimbursement_id = rs.getInt("REIMBURSEMENT_ID");
+				String details = rs.getString("DETAILS");
+				String status = rs.getString("STATUS");
+				double balance = rs.getDouble("BALANCE");
+				//int employee_id = rs.getInt("EMPLOYEE_ID");
+				LocalDate s_date = rs.getDate("S_DATE").toLocalDate();
+				table.setRtable(new Reimbursement_Table(reimbursement_id, details, balance, employee_id, status, s_date));
+				tables.add(table);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return tables;
+	}
+
+	@Override
+	public List<Employee_Table> allRemList() {
+		List<Employee_Table> tables = new ArrayList<Employee_Table>();
+		try (Connection con = ConnectionService.getConnection()) {
+			
+			String sql = "SELECT * FROM (SELECT E.EMPLOYEE_ID ,E.FIRSTNAME, E.LASTNAME, E.ISADMIN, E.MANAGER_ID, M.FIRSTNAME AS M_F, M.LASTNAME AS M_L\r\n" + 
+					"FROM EMPLOYEE_TABLE E, EMPLOYEE_TABLE M\r\n" + 
+					"WHERE E.MANAGER_ID = M.EMPLOYEE_ID) E\r\n" + 
+					"JOIN REIMBURSEMENT_TABLE R\r\n" + 
+					"ON E.EMPLOYEE_ID = R.EMPLOYEE_ID "+ 
+					"ORDER BY REIMBURSEMENT_ID DESC";			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.executeQuery();
+			ResultSet rs=pstmt.getResultSet();
+			while(rs.next()) {
+				Employee_Table table = new Employee_Table();
+				table.setEmployee_id(rs.getInt("EMPLOYEE_ID")); 
+				table.setFirstName(rs.getString("FIRSTNAME"));
+				table.setLastName(rs.getString("LASTNAME"));
+				table.setIsAdmin(rs.getInt("ISADMIN"));
+				table.setManager_id(rs.getInt("MANAGER_ID"));
+				table.setM_f(rs.getString("M_F"));
+				table.setM_l(rs.getString("M_L"));
+				int reimbursement_id = rs.getInt("REIMBURSEMENT_ID");
+				String details = rs.getString("DETAILS");
+				String status = rs.getString("STATUS");
+				double balance = rs.getDouble("BALANCE");
+				int employee_id = rs.getInt("EMPLOYEE_ID");
+				LocalDate s_date = rs.getDate("S_DATE").toLocalDate();
+				table.setRtable(new Reimbursement_Table(reimbursement_id, details, balance, employee_id, status, s_date));
+				tables.add(table);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return tables;
 	}
 
 }
