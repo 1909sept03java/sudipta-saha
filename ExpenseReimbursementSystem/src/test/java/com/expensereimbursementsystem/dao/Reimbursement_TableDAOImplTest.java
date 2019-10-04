@@ -2,11 +2,16 @@ package com.expensereimbursementsystem.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.expensereimbursementsystem.beans.Reimbursement_Table;
 
 public class Reimbursement_TableDAOImplTest {
 
@@ -28,22 +33,29 @@ public class Reimbursement_TableDAOImplTest {
 
 	@Test
 	public void testGetPersonalRemList() {
-		fail("Not yet implemented");
+		Reimbursement_TableDAO tableDAO = new Reimbursement_TableDAOImpl();
+		List<Reimbursement_Table> tables = new ArrayList<Reimbursement_Table>();
+		tables = tableDAO.getPersonalRemList(1000);
+		//System.out.println(tables);
+		assertEquals(tables.get(0).getEmployee_id(), 1000);
 	}
 
 	@Test
 	public void testNewTicket() {
-		fail("Not yet implemented");
+		Reimbursement_TableDAO tableDAO = new Reimbursement_TableDAOImpl();
+		assertTrue(tableDAO.newTicket(1000, "Junit Test", 101));
 	}
 
 	@Test
 	public void testAcceptTicket() {
-		fail("Not yet implemented");
+		Reimbursement_TableDAO tableDAO = new Reimbursement_TableDAOImpl();
+		assertTrue(tableDAO.acceptTicket(1000));
 	}
 
 	@Test
 	public void testRejectTicket() {
-		fail("Not yet implemented");
+		Reimbursement_TableDAO tableDAO = new Reimbursement_TableDAOImpl();
+		assertTrue(tableDAO.acceptTicket(1000));
 	}
 
 }

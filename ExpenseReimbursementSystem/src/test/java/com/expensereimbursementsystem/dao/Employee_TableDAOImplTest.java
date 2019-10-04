@@ -2,11 +2,16 @@ package com.expensereimbursementsystem.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.expensereimbursementsystem.beans.Employee_Table;
 
 public class Employee_TableDAOImplTest {
 
@@ -28,27 +33,42 @@ public class Employee_TableDAOImplTest {
 
 	@Test
 	public void testLogin() {
-		fail("Not yet implemented");
+		Employee_TableDAOImpl test = new Employee_TableDAOImpl();
+		Employee_Table table  =  test.login("user1", "user1");
+		table.getEmployee_id();
+		assertEquals(table.getEmployee_id(),1000);
+		
 	}
 
 	@Test
 	public void testEmployeeUnderManager() {
-		fail("Not yet implemented");
+		Employee_TableDAOImpl test = new Employee_TableDAOImpl();
+		List<Employee_Table> tables = new ArrayList<Employee_Table>();
+		tables = test.employeeUnderManager(1000);
+		assertEquals(tables.get(1).getEmployee_id(),1000);
 	}
 
 	@Test
 	public void testAllRemList() {
-		fail("Not yet implemented");
+		Employee_TableDAOImpl test = new Employee_TableDAOImpl();
+		List<Employee_Table> tables = new ArrayList<Employee_Table>();
+		tables = test.allRemList();
+		assertEquals(tables.get(1).getEmployee_id(),1000);
+		
 	}
 
 	@Test
 	public void testUpdateInfo() {
-		fail("Not yet implemented");
+		Employee_TableDAOImpl test = new Employee_TableDAOImpl();
+		
+		assertTrue(test.updateInfo(1000, "John", "Adam"));
 	}
 
 	@Test
 	public void testUpdatedName() {
-		fail("Not yet implemented");
+		Employee_TableDAOImpl test = new Employee_TableDAOImpl();
+		Employee_Table table  =  test.updatedName(1000);
+		assertEquals(table.getFirstName(),"John");
 	}
 
 }

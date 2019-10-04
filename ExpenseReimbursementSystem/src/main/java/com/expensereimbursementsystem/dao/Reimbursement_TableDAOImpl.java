@@ -13,7 +13,8 @@ import com.expensereimbursementsystem.beans.Reimbursement_Table;
 import com.expensereimbursementsystem.service.ConnectionService;
 
 public class Reimbursement_TableDAOImpl implements Reimbursement_TableDAO {
-
+	
+	//Reimbursement list for a user
 	@Override
 	public List<Reimbursement_Table> getPersonalRemList(int employee_id) {
 		List<Reimbursement_Table> tables = new ArrayList<Reimbursement_Table>();
@@ -42,6 +43,7 @@ public class Reimbursement_TableDAOImpl implements Reimbursement_TableDAO {
 		return tables;
 	}
 
+	//creates a new ticket
 	@Override
 	public boolean newTicket(int employee_id, String details, double balance) {
 		try (Connection con = ConnectionService.getConnection()) {
@@ -64,6 +66,7 @@ public class Reimbursement_TableDAOImpl implements Reimbursement_TableDAO {
 		return false;
 	}
 
+	//accepts a ticket 
 	@Override
 	public boolean acceptTicket(int reimbursement_id) {
 		try (Connection con = ConnectionService.getConnection()) {
@@ -85,6 +88,7 @@ public class Reimbursement_TableDAOImpl implements Reimbursement_TableDAO {
 		return false;
 	}
 
+	//rejects a  ticket 
 	@Override
 	public boolean rejectTicket(int reimbursement_id) {
 		try (Connection con = ConnectionService.getConnection()) {

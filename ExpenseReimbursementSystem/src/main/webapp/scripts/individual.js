@@ -1,10 +1,17 @@
 window.onload = function() {
+	if(!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
+    }
 	populateUser();
+
 }
 
+let count = 1;
 async function populateUser() { 
 
 	try {
+		
         let [response,plist] = await Promise.all([fetch('http://localhost:8082/EmployeeManagement/session'),
             fetch('http://localhost:8082/EmployeeManagement/server')]);
 		//const response = await fetch('http://localhost:8082/EmployeeManagement/session');
@@ -28,11 +35,11 @@ async function populateUser() {
 				let reject = 'http://localhost:8082/EmployeeManagement/reject?reimbursement_id='+element.reimbursement_id;
 				//http://localhost:8082/EmployeeManagement/specificemplist?employee_id=1000
 				//let eurl = 'http://localhost:8082/EmployeeManagement/specificemplist?employee_id='+element.employee_id;
-				//console.log(eurl)
+				//console.log(eurl) 
 				//console.log(accept);
 				let sta = element.status;
 
-				if(sta === 'Pending'){
+				if(sta === 'Pending'){ 
 					tr.innerHTML = `<th scope="row">${i}</th>
 					<td>${element.details}</td>
 					<td>${element.balance}</td>
@@ -53,9 +60,15 @@ async function populateUser() {
 				table.appendChild(tr);
 				i++;
 			});
+			
 			//document.getElementById("lastname").innerText = "lastname: "+user.lastName;
 		}
 	} catch(error) {
 		console.log(error);
-	} 
+	}  
+	/*for(i = 0; i<count; i++){
+		count--;
+		window.location.reload();
+	}*/
+	
 }    

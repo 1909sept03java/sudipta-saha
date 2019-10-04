@@ -13,7 +13,7 @@ import com.expensereimbursementsystem.beans.Employee_Table;
 import com.expensereimbursementsystem.beans.Reimbursement_Table;
 import com.expensereimbursementsystem.service.ConnectionService;
 public class Employee_TableDAOImpl implements Employee_TableDAO  {
-
+	//verifies the username and password
 	@Override
 	public Employee_Table login(String userName, String userPassword) {
 		try (Connection con = ConnectionService.getConnection()) {
@@ -41,7 +41,7 @@ public class Employee_TableDAOImpl implements Employee_TableDAO  {
 
 		return null;
 	}
-
+	//Returns all the reimbursement list with employee name under a specific manager
 	@Override
 	public List<Employee_Table> employeeUnderManager(int employee_id) {
 		List<Employee_Table> tables = new ArrayList<Employee_Table>();
@@ -84,7 +84,8 @@ public class Employee_TableDAOImpl implements Employee_TableDAO  {
 		}
 		return tables;
 	}
-
+	
+	//Returns all the reimbursement list with manager name
 	@Override
 	public List<Employee_Table> allRemList() {
 		List<Employee_Table> tables = new ArrayList<Employee_Table>();
@@ -125,7 +126,7 @@ public class Employee_TableDAOImpl implements Employee_TableDAO  {
 		}
 		return tables;
 	}
-
+	//Updates the the firstname and lastname
 	@Override
 	public boolean updateInfo(int employee_id, String firstName, String lastName) {
 		try (Connection con = ConnectionService.getConnection()) {
@@ -148,6 +149,7 @@ public class Employee_TableDAOImpl implements Employee_TableDAO  {
 		return false;
 	}
 	
+	//Returns the firstname and lastname 
 	@Override
 	public Employee_Table updatedName(int employee_id) {
 		try (Connection con = ConnectionService.getConnection()) {
