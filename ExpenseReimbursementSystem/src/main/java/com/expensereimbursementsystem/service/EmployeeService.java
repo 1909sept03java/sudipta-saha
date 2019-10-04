@@ -15,5 +15,10 @@ public class EmployeeService {
 		public List<Employee_Table>  allRemList () {
 			return tableDAO.allRemList();
 		}
-
+		public boolean updateInfo(int employee_id,String firstName,String lastName) {
+			return tableDAO.updateInfo(employee_id, firstName, lastName);
+		}
+		public Employee_Table updatedName(int employee_id) {
+			return tableDAO.updatedName(employee_id);
+		}
 }

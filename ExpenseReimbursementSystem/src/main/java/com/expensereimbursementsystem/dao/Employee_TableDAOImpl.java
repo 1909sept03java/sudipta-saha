@@ -126,4 +126,48 @@ public class Employee_TableDAOImpl implements Employee_TableDAO  {
 		return tables;
 	}
 
+	@Override
+	public boolean updateInfo(int employee_id, String firstName, String lastName) {
+		try (Connection con = ConnectionService.getConnection()) {
+			String sql = "UPDATE EMPLOYEE_TABLE\r\n" + 
+					"SET FIRSTNAME = ? , LASTNAME = ?\r\n" + 
+					"WHERE EMPLOYEE_ID = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, firstName);
+			pstmt.setString(2, lastName);
+			pstmt.setInt(3,employee_id);
+			if(pstmt.executeUpdate() == 1) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@Override
+	public Employee_Table updatedName(int employee_id) {
+		try (Connection con = ConnectionService.getConnection()) {
+			String sql = "SELECT FIRSTNAME,LASTNAME FROM EMPLOYEE_TABLE WHERE EMPLOYEE_ID = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, employee_id);
+			pstmt.executeQuery();
+			ResultSet rs=pstmt.getResultSet();
+			while(rs.next()) {
+				Employee_Table table = new Employee_Table(); 
+				table.setFirstName(rs.getString("FIRSTNAME"));
+				table.setLastName(rs.getString("LASTNAME"));
+				return table;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+ 
 }

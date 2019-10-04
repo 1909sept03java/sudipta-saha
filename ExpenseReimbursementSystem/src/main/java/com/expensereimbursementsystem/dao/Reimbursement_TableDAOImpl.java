@@ -64,4 +64,46 @@ public class Reimbursement_TableDAOImpl implements Reimbursement_TableDAO {
 		return false;
 	}
 
+	@Override
+	public boolean acceptTicket(int reimbursement_id) {
+		try (Connection con = ConnectionService.getConnection()) {
+			LocalDate s_date;
+			String sql = "UPDATE REIMBURSEMENT_TABLE\r\n" + 
+					"SET STATUS = 'Accepted'\r\n" + 
+					"WHERE REIMBURSEMENT_ID = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,reimbursement_id);
+			if(pstmt.executeUpdate() == 1) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean rejectTicket(int reimbursement_id) {
+		try (Connection con = ConnectionService.getConnection()) {
+			LocalDate s_date;
+			String sql = "UPDATE REIMBURSEMENT_TABLE\r\n" + 
+					"SET STATUS = 'Rejected'\r\n" + 
+					"WHERE REIMBURSEMENT_ID = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,reimbursement_id);
+			if(pstmt.executeUpdate() == 1) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }

@@ -19,5 +19,11 @@ public class PersonalReimbursementService {
 	public boolean newTicket(int employee_id, String details, double balance) {
 		return reimbursement_TableDAO.newTicket(employee_id, details, balance);
 	}
+	public void acceptTicket(int reimbursement_id) {
+		reimbursement_TableDAO.acceptTicket(reimbursement_id);
+	}
+	public void rejectTicket(int reimbursement_id) {
+		reimbursement_TableDAO.rejectTicket(reimbursement_id);
+	}
 
 }

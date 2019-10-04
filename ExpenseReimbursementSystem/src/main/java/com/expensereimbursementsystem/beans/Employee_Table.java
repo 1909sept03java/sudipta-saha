@@ -29,6 +29,11 @@ public class Employee_Table {
 	public void setRtable(Reimbursement_Table rtable) {
 		this.rtable = rtable;
 	}
+	public Employee_Table(String firstName, String lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 	public Employee_Table(int employee_id, String firstName, String lastName, int isAdmin, int manager_id) {
 		super();
 		this.employee_id = employee_id;

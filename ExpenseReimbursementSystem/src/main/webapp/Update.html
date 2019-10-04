@@ -15,26 +15,25 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="login.css">
+<link rel="stylesheet" type="text/css" href="login.css">
 
-<title>Management</title>
-</head>
-<body> 
+<title>Update Information</title>
+</head> 
+<body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				
-				<li class="nav-item">
-					<a class="nav-link" href="Profile.html">Home</a>
-				</li>
-				<li class="nav-item">
-						<a class="nav-link" href="Update.html">Update Information</a>
-					  </li>
-                <li class="nav-item active"><a class="nav-link" href="Management.html">Management
-                    <span class="sr-only">(current)</span>
-                </a></li>
-                <li class="nav-item">
+                    <li class="nav-item">
+                            <a class="nav-link" href="Profile.html">Home</a>
+                          </li>
+                <li class="nav-item active"><a class="nav-link" href="Update.html">Update Information
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li id ="management" class="nav-item">
+					<a class="nav-link" href="Management.html">Management</a>
+				  </li>
+				  <li id ="list" class="nav-item">
 					<a class="nav-link" href="Caselist.html">All Case List</a>
                 </li>
 				
@@ -46,27 +45,26 @@
 	</nav>
 
 
-    <div class="jumbotron">
+	<div class="jumbotron">
 		<div>
-			<br>
-				<table class="table table-striped">
-						<thead class="thead-dark">
-						  <tr> 
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-							<th scope="col">Details</th>
-							<th scope="col">Amount</th>
-							<th scope="col">Status</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Action</th>
-						  </tr>
-						</thead>
-						<tbody id = "tab">
-						</tbody>
-					  </table>
+            <legend id = "fname"></legend>
+            <legend id = "lname"></legend>
+            <hr>
+            <h6>Update:</h6>
+            <form action="update" method="POST">
+                    <fieldset>
+                        <p>Firstname:</p>
+                        <input required autocomplete="off" name="first_name"/>
+                    </fieldset>
+                    <fieldset>
+                        <p>Lastname:</p>
+                        <input required autocomplete="off" name="last_name"/>
+                    </fieldset>
+                    <br>
+                    <input type="submit" value="update" style="margin:0px;padding: 0px 40px;" />
 		</div>
 	</div>
 
 </body>
-<script src="scripts/list.js"></script>
+<script src="scripts/update.js"></script>
 </html>
