@@ -1,0 +1,16 @@
+
+
+<ul class="list-group">
+
+  <li *ngFor="let studentD of studentDetails">
+
+    <a href="profile" class="list-group-item active waves-light" (click)="studentProfile(studentD.id)" mdbWavesEffect>
+
+      {{studentD.name}}
+
+    </a>
+
+  </li>
+
+</ul>
+
