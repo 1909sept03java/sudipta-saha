@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Student;
+import com.revature.service.StudentCourseService;
 import com.revature.service.StudentService;
 
 @RestController // @RestController = @Controller + @ResponseBody
@@ -20,11 +21,25 @@ import com.revature.service.StudentService;
 public class StudentController {
 
 	private StudentService studentService;
+	//private StudentCourseService scs;
 	
 	@Autowired
 	private void setStudentService (StudentService studentService) {
 		this.studentService = studentService;
 	}
+	
+	/*
+	 * @Autowired private void setStudentCourseService (StudentCourseService scs) {
+	 * this.scs = scs; }
+	 */
+	
+	/*
+	 * @RequestMapping(value = "/add", method = RequestMethod.GET) // parameterize
+	 * the path public ResponseEntity<Boolean> addCourse(@PathVariable int
+	 * studentId, int courseId) { scs.addCourse(studentId,courseId);
+	 * System.out.println("here"); return new ResponseEntity<>(true, HttpStatus.OK);
+	 * }
+	 */
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET) // parameterize the path
 	public ResponseEntity<List<Student>> getAll() {

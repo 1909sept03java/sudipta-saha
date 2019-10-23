@@ -1,6 +1,7 @@
 package com.revature.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -22,7 +24,7 @@ public class Course {
 	@Min(0) 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="courseSequence")
-	@SequenceGenerator(allocationSize=1, name="courseSequence", sequenceName="SQ_COURSE_PK")
+	@SequenceGenerator(initialValue=1000,allocationSize=1, name="courseSequence", sequenceName="SQ_COURSE_PK")
 	@Column(name="COURSE_ID")
 	private int id;
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
@@ -39,6 +41,10 @@ public class Course {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/*
+	 * @OneToMany(mappedBy = "course") Set<StudentCourse> scs;
+	 */
 
 	@Override
 	public String toString() {

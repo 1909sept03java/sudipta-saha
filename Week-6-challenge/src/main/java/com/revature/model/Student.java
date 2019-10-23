@@ -2,6 +2,7 @@ package com.revature.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -26,12 +27,15 @@ public class Student {
 	 * @JoinColumn(name="COURSE_ID") private Course course_id;
 	 */
 	private String name;
-	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="STUDENT_COURSE",
 	joinColumns = {@JoinColumn(name="STUDENT_ID")},
 	inverseJoinColumns = {@JoinColumn(name="COURSE_ID")})
 	private List<Course> courses = new ArrayList<>();
-
+	
+	/*
+	 * @OneToMany(mappedBy = "student") Set<StudentCourse> scs;
+	 */
 
 	public Student() {
 		super();

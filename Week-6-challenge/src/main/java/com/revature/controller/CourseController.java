@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.client.DemoFeignClient;
 import com.revature.model.Course;
 import com.revature.service.CourseService;
 
@@ -18,10 +19,21 @@ import com.revature.service.CourseService;
 @RequestMapping(value = "/course")
 public class CourseController {
 	private CourseService courseService;
+	private DemoFeignClient demoFc;
+	
+	@Autowired
+	public void getDemoFeignClient(DemoFeignClient demoFc) {
+		this.demoFc = demoFc;
+	}
 	
 	@Autowired
 	public CourseController(CourseService courseService) {
 		this.courseService = courseService;
+	}
+	
+	@RequestMapping(value = "/client", method = RequestMethod.GET) // parameterize the path
+	public ResponseEntity<List<Course>> getClient() {
+		return new ResponseEntity<List<Course>>(this.demoFc.getCourse().getBody(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET) // parameterize the path

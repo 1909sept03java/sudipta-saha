@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Student;
+import com.revature.repository.StudentCourseRepository;
 import com.revature.repository.StudentRepository;
 
 @Service
