@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.model.Course;
 import com.revature.model.Student;
+import com.revature.service.CourseService;
 import com.revature.service.StudentCourseService;
 import com.revature.service.StudentService;
 
@@ -22,11 +24,19 @@ public class StudentController {
 
 	private StudentService studentService;
 	//private StudentCourseService scs;
+	private CourseService  courseService;
+	
+	@Autowired
+	private void setCourseService (CourseService studentService) {
+		this.courseService = courseService;
+	}
 	
 	@Autowired
 	private void setStudentService (StudentService studentService) {
 		this.studentService = studentService;
 	}
+	
+	
 	
 	/*
 	 * @Autowired private void setStudentCourseService (StudentCourseService scs) {
@@ -76,6 +86,39 @@ public class StudentController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		} else {
 			s.setName(name);
+			return new ResponseEntity<>(s, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/enroll", method = RequestMethod.GET) // parameterize the path
+	public ResponseEntity<Student> enrollCourse(@RequestParam("sid") int sid , @RequestParam("cid") int cid) {
+		Student s = this.studentService.getById(sid);
+		if (s == null) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} else {
+			Course c  = new Course();
+			c.setId(cid);
+			List<Course> courses = s.getCourses();
+			courses.add(c);
+			this.studentService.createStudent(s);
+			return new ResponseEntity<>(s, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/drop", method = RequestMethod.GET) // parameterize the path
+	public ResponseEntity<Student> dropCourse(@RequestParam("sid") int sid , @RequestParam("cid") int cid) {
+		Student s = this.studentService.getById(sid);
+		//Course course = this.courseService.getById(cid);
+		if (s == null) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} else {
+			Course c  = new Course();
+			//c.setId(cid);
+			List<Course> courses = s.getCourses();
+			System.out.println(courses);
+			courses.removeIf(cc -> cc.getId() == cid);
+			//s.getCourses().remove(course);
+			this.studentService.createStudent(s);
 			return new ResponseEntity<>(s, HttpStatus.OK);
 		}
 	}

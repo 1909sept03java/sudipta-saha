@@ -1,0 +1,15 @@
+a:hover{
+    background-color: red;
+}
+.card{
+    border-color: black;
+    background-color:lightblue;
+    margin: 10px;
+}
+ .card:hover{
+  background-color: transparent;
+}
+
+.mat-menu-item {
+     background-color:transparent;
+}

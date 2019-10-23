@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import {MatCardModule} from '@angular/material/card';
 
 const appRoutes: Routes = [
   { path: '',      component: StudentComponent  },
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    MatCardModule,
     BrowserAnimationsModule,
     FormsModule,
     BrowserModule,

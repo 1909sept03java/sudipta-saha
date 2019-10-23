@@ -1,14 +1,43 @@
+<div class="jumbotron rounded">
+  <h1 class="display-4">Welcome, {{sname}}!</h1>
+  <p class="lead">List of the currently enrolled courses</p>
+  <hr class="my-4">
+  <table class="table ">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Course ID</th>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courseDetails">
+      <td>{{course.id}}</td>
+      <td>{{course.name}}</td>
+      <td><button class="btn btn-primary btn-sm rounded-pill" (click)="drop(course.id)">Drop</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
-<p>{{sname}}</p>
-<ul class="list-group">
-
-  <li *ngFor="let course of courseDetails">
-      {{course.name}}
-      {{course.id}}
-
-  </li>
-
-</ul>
-
-
+<div class="jumbotron">
+  <p class="lead">Select a course to enroll</p>
+  <hr class="my-4">
+  <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Course ID</th>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let scourse of courselist">
+      <td>{{scourse.id}}</td>
+      <td>{{scourse.name}}</td>
+      <td><button class="btn btn-primary btn-sm rounded-pill ml3" (click)="enroll(scourse.id)">Enroll</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
