@@ -6,4 +6,5 @@ export class CourseDetails {
         this.name = name;
         this.id= id;
     }
+    
 }

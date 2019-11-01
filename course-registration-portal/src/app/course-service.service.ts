@@ -43,6 +43,10 @@ export class CourseServiceService {
     return this.httpClient.get(this.allstudent);
 
   }
+
+  public test(){
+    return 'test';
+  }
   
   public fetchallcourse() {
     return this.httpClient.get(this.allcourse);

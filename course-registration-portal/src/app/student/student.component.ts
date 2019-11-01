@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import {CourseServiceService} from '../course-service.service';
 import { StudentDetails } from '../student-details';
+import { Subscription } from 'rxjs';
 import {MatListModule} from '@angular/material/list';
 
 
@@ -10,18 +11,24 @@ import {MatListModule} from '@angular/material/list';
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent implements OnInit {
+export class StudentComponent implements OnInit, OnDestroy {
 
   studentDetails : StudentDetails [] = [];
+  subscriptions: Subscription[] = [];
  // id : number;
  // name : string;
 
 
   constructor( private courseserviceService: CourseServiceService,public router: Router ) { }
 
-  studentProfile(id : number){
+  studentProfile(id : number) : boolean{
     localStorage.setItem('id',JSON.stringify(id));
     console.log(id);
+    return true;
+  }
+
+  testFun(){
+    return this.courseserviceService.test();
   }
 
   ngOnInit() {
@@ -36,6 +43,11 @@ export class StudentComponent implements OnInit {
       console.log(this.studentDetails);
       
     })
+    //return this.studentDetails[0].id;
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe);
   }
 
 }
